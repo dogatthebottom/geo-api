@@ -6,10 +6,12 @@ This app builds geo-model contains random 7 geopoint and 24 roads
 geo-coordinates of each geopoint is just Double value
 
 #BUILD
+You can build app using Maven command
 
+**mvn package**
 
 #RUN
-java -jar _compiled jar file_ in target folder
+java -jar _geo-api-0.0.1-SNAPSHOT.jar_ in target folder
 
 #ENDPOINTS
 `/geo` - test service page<br>

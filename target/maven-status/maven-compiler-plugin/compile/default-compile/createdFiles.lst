@@ -1,0 +1,8 @@
+gns\georest\geoapi\model\GeoPoint.class
+gns\georest\geoapi\controller\GeoController$1.class
+gns\georest\geoapi\GeoApiApplication.class
+gns\georest\geoapi\utils\DijkstraAlgorithm.class
+gns\georest\geoapi\model\Graph.class
+gns\georest\geoapi\model\Road.class
+gns\georest\geoapi\controller\GeoController$2.class
+gns\georest\geoapi\controller\GeoController.class
