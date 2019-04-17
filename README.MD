@@ -14,7 +14,7 @@ You can build app using Maven command<br><br>
 java -jar _geo-api-0.0.1-SNAPSHOT.jar_ in target folder<br><br>
 
 #ENDPOINTS<br>
-`/geo` - test service page<br><br>
+`/geo` - test service page<br>
 `/allpoints/{distance}**` - returns allpoints **distance** is parameter for search hightlights<br>
 `/allroads` - returns all routes<br>
 `/shortestDistance/{from}/{to}/{distance}` - returns shortest distance between **from** and **to** parameters in (A,B,C,D,E,F,G)<br> 
