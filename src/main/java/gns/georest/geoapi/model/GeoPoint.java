@@ -1,4 +1,9 @@
 package gns.georest.geoapi.model;
+
+import javax.validation.constraints.Max;
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 * Class Handler for GeoPoints
 * */
@@ -10,6 +15,28 @@ public class GeoPoint {
     private Double coord;     //Coordinates of geo point (not lat long, just Double)
     private boolean sight;    // Flag for determening if is it interesting place or not
 
+    public String getHightlights() {
+        return hightlights;
+    }
+
+    public void setHightlights(String hightlights) {
+        this.hightlights = hightlights;
+    }
+
+    private String hightlights;
+
+
+
+    @Override
+    public String toString() {
+        return "GeoPoint{" +
+                "pointName='" + pointName + '\'' +
+                ", pointDesc='" + pointDesc + '\'' +
+                ", coord=" + coord +
+                ", sight=" + sight +
+                ", hightlights='" + hightlights + '\'' +
+                '}';
+    }
 
     public GeoPoint(){
 
@@ -53,14 +80,8 @@ public class GeoPoint {
         this.sight = sight;
     }
 
-    @Override
-    public String toString() {
-        return "GeoPoint{" +
-                "pointName='" + pointName + '\'' +
-                ", pointDesc='" + pointDesc + '\'' +
-                ", coord=" + coord +
-                ", sight=" + sight +
-                '}';
-    }
+
+
+
 
 }

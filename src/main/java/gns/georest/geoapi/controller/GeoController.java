@@ -115,8 +115,9 @@ public class GeoController {
         return "Geo Rest Controller is Running";
     }
 
-    @GetMapping("allpoints")
-    public List<GeoPoint> getAllPoints() {
+    @GetMapping(path="allpoints/{distance}")
+    public List<GeoPoint> getAllPoints(@PathVariable int distance) {
+        this.fillSights(distance);
         return geopoints;
     }
 
@@ -126,7 +127,8 @@ public class GeoController {
     }
 
     @GetMapping(path = "shortestDistance/{from}/{to}")
-    public Map<String,Integer> getShortestDistance(@PathVariable String from, @PathVariable String to){
+    public Map<String,Integer> getShortestDistance(@PathVariable String from, @PathVariable String to,@PathVariable int distance){
+       // this.fillSights(distance);
         Map<String,Integer> shortDist= new HashMap<String, Integer>();
         Graph graph = new Graph(geopoints, roads);
         DijkstraAlgorithm da = new DijkstraAlgorithm(graph);
@@ -136,8 +138,9 @@ public class GeoController {
         return shortDist;
     }
 
-    @GetMapping(path = "shortestRoute/{from}/{to}")
-    public LinkedList<GeoPoint> getShortestRoute(@PathVariable String from, @PathVariable String to) {
+    @GetMapping(path = "shortestRoute/{from}/{to}/{distance}")
+    public LinkedList<GeoPoint> getShortestRoute(@PathVariable String from, @PathVariable String to,@PathVariable int distance) {
+        this.fillSights(distance);
         Graph graph = new Graph(geopoints, roads);
         DijkstraAlgorithm da = new DijkstraAlgorithm(graph);
         da.execute(getStart(from));
@@ -169,6 +172,27 @@ public class GeoController {
         }
         return end;
 
+
+    }
+
+
+    private void fillSights(int distance){
+        System.out.println("Filling sights");
+       for (GeoPoint gp: geopoints){
+           String hightlights="";
+
+           System.out.println("GP=="+gp);
+
+           for (Road rd : roads){
+
+               if (rd.getStart().equals(gp) && rd.getDistance()<=distance && rd.getEnd().isSight()){
+                   System.out.println("FIILLL");
+                   hightlights=hightlights+rd.getEnd().getPointName()+";";
+               }
+
+           }
+          gp.setHightlights(hightlights);
+       }
 
     }
 
