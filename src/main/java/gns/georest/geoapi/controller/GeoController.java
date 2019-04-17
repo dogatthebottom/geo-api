@@ -14,16 +14,16 @@ import java.util.*;
 @RestController
 @RequestMapping("geo")
 public class GeoController {
-    //Init and fill model
+    //Init and fill random model contains 7 geopoints and 24 roads
     Random generator = new Random();
 
-    GeoPoint gpA = new GeoPoint("A", "Point A", 1.2, true);
-    GeoPoint gpB = new GeoPoint("B", "Point B", 1.4, true);
-    GeoPoint gpC = new GeoPoint("C", "Point C", 1.6, false);
-    GeoPoint gpD = new GeoPoint("D", "Point D", 1.8, false);
-    GeoPoint gpE = new GeoPoint("E", "Point E", 1.8, false);
-    GeoPoint gpF = new GeoPoint("F", "Point F", 1.8, false);
-    GeoPoint gpG = new GeoPoint("G", "Point G", 1.8, false);
+    GeoPoint gpA = new GeoPoint("A", "Point A", generator.nextDouble(), generator.nextBoolean());
+    GeoPoint gpB = new GeoPoint("B", "Point B", generator.nextDouble(), generator.nextBoolean());
+    GeoPoint gpC = new GeoPoint("C", "Point C", generator.nextDouble(), generator.nextBoolean());
+    GeoPoint gpD = new GeoPoint("D", "Point D", generator.nextDouble(), generator.nextBoolean());
+    GeoPoint gpE = new GeoPoint("E", "Point E", generator.nextDouble(), generator.nextBoolean());
+    GeoPoint gpF = new GeoPoint("F", "Point F", generator.nextDouble(), generator.nextBoolean());
+    GeoPoint gpG = new GeoPoint("G", "Point G", generator.nextDouble(), generator.nextBoolean());
 
 
     Road rAB = new Road(gpA, gpB, generator.nextInt(20));
