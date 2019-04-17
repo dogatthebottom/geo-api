@@ -2,8 +2,8 @@ Spring Boot application
 Find shortest distance and path using Diijkstra Algorithm.
 
 #DESCRIPTION
-This app builds geo-model contains random 7 geopoint and 24 roads 
-geo-coordinates of each geopoint is just Double value
+This app builds geo-model contains random 7 geopoint and 24 roads.
+Geo-coordinates of each geopoint is just Double value
 
 #BUILD
 You can build app using Maven command
