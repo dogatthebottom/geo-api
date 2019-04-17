@@ -2,7 +2,7 @@ Spring Boot application
 Find shortest distance and path using Diijkstra Algorithm
 
 #RUN
-java -jar _compiled jar file_
+java -jar _compiled jar file_ in target folder
 
 #ENDPOINTS
 **/geo** - test service page<br>
