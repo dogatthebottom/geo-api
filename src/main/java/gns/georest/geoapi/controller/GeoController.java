@@ -126,9 +126,9 @@ public class GeoController {
         return roads;
     }
 
-    @GetMapping(path = "shortestDistance/{from}/{to}")
+    @GetMapping(path = "shortestDistance/{from}/{to}/{distance}")
     public Map<String,Integer> getShortestDistance(@PathVariable String from, @PathVariable String to,@PathVariable int distance){
-       // this.fillSights(distance);
+        this.fillSights(distance);
         Map<String,Integer> shortDist= new HashMap<String, Integer>();
         Graph graph = new Graph(geopoints, roads);
         DijkstraAlgorithm da = new DijkstraAlgorithm(graph);
