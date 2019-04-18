@@ -15,52 +15,54 @@ import java.util.*;
 @RequestMapping("geo")
 public class GeoController {
     //Init and fill random model contains 7 geopoints and 24 roads
-    Random generator = new Random();
+    Random r = new Random();
+    int rangeMin=1;
+    int rangeMax=20;
 
-    GeoPoint gpA = new GeoPoint("A", "Point A", generator.nextDouble(), generator.nextBoolean());
-    GeoPoint gpB = new GeoPoint("B", "Point B", generator.nextDouble(), generator.nextBoolean());
-    GeoPoint gpC = new GeoPoint("C", "Point C", generator.nextDouble(), generator.nextBoolean());
-    GeoPoint gpD = new GeoPoint("D", "Point D", generator.nextDouble(), generator.nextBoolean());
-    GeoPoint gpE = new GeoPoint("E", "Point E", generator.nextDouble(), generator.nextBoolean());
-    GeoPoint gpF = new GeoPoint("F", "Point F", generator.nextDouble(), generator.nextBoolean());
-    GeoPoint gpG = new GeoPoint("G", "Point G", generator.nextDouble(), generator.nextBoolean());
+    GeoPoint gpA = new GeoPoint("A", "Point A", rangeMin + (rangeMax - rangeMin) * r.nextDouble(),rangeMin + (rangeMax - rangeMin) * r.nextDouble(), r.nextBoolean());
+    GeoPoint gpB = new GeoPoint("B", "Point B", rangeMin + (rangeMax - rangeMin) * r.nextDouble(),rangeMin + (rangeMax - rangeMin) * r.nextDouble(), r.nextBoolean());
+    GeoPoint gpC = new GeoPoint("C", "Point C", rangeMin + (rangeMax - rangeMin) * r.nextDouble(),rangeMin + (rangeMax - rangeMin) * r.nextDouble(), r.nextBoolean());
+    GeoPoint gpD = new GeoPoint("D", "Point D", rangeMin + (rangeMax - rangeMin) * r.nextDouble(),rangeMin + (rangeMax - rangeMin) * r.nextDouble(), r.nextBoolean());
+    GeoPoint gpE = new GeoPoint("E", "Point E", rangeMin + (rangeMax - rangeMin) * r.nextDouble(),rangeMin + (rangeMax - rangeMin) * r.nextDouble(), r.nextBoolean());
+    GeoPoint gpF = new GeoPoint("F", "Point F", rangeMin + (rangeMax - rangeMin) * r.nextDouble(),rangeMin + (rangeMax - rangeMin) * r.nextDouble(), r.nextBoolean());
+    GeoPoint gpG = new GeoPoint("G", "Point G", rangeMin + (rangeMax - rangeMin) * r.nextDouble(),rangeMin + (rangeMax - rangeMin) * r.nextDouble(), r.nextBoolean());
 
 
-    Road rAB = new Road(gpA, gpB, generator.nextInt(20));
-    Road rBA = new Road(gpB, gpA, generator.nextInt(20));
+    Road rAB = new Road(gpA, gpB, r.nextInt(20));
+    Road rBA = new Road(gpB, gpA, r.nextInt(20));
 
-    Road rAC = new Road(gpA, gpC, generator.nextInt(20));
-    Road rCA = new Road(gpC, gpA, generator.nextInt(20));
+    Road rAC = new Road(gpA, gpC, r.nextInt(20));
+    Road rCA = new Road(gpC, gpA, r.nextInt(20));
 
-    Road rAE = new Road(gpA, gpE, generator.nextInt(20));
-    Road rEA = new Road(gpE, gpA, generator.nextInt(20));
+    Road rAE = new Road(gpA, gpE, r.nextInt(20));
+    Road rEA = new Road(gpE, gpA, r.nextInt(20));
 
-    Road rBD = new Road(gpB, gpD, generator.nextInt(20));
-    Road rDB = new Road(gpD, gpB, generator.nextInt(20));
+    Road rBD = new Road(gpB, gpD, r.nextInt(20));
+    Road rDB = new Road(gpD, gpB, r.nextInt(20));
 
-    Road rBC = new Road(gpB, gpC, generator.nextInt(20));
-    Road rCB = new Road(gpC, gpB, generator.nextInt(20));
+    Road rBC = new Road(gpB, gpC, r.nextInt(20));
+    Road rCB = new Road(gpC, gpB, r.nextInt(20));
 
-    Road rCD = new Road(gpC, gpD, generator.nextInt(20));
-    Road rDC = new Road(gpD, gpC, generator.nextInt(20));
+    Road rCD = new Road(gpC, gpD, r.nextInt(20));
+    Road rDC = new Road(gpD, gpC, r.nextInt(20));
 
-    Road rCE = new Road(gpC, gpE, generator.nextInt(20));
-    Road rEC = new Road(gpE, gpC, generator.nextInt(20));
+    Road rCE = new Road(gpC, gpE, r.nextInt(20));
+    Road rEC = new Road(gpE, gpC, r.nextInt(20));
 
-    Road rDE = new Road(gpD, gpE, generator.nextInt(20));
-    Road rED = new Road(gpE, gpD, generator.nextInt(20));
+    Road rDE = new Road(gpD, gpE, r.nextInt(20));
+    Road rED = new Road(gpE, gpD, r.nextInt(20));
 
-    Road rDF = new Road(gpD, gpF, generator.nextInt(20));
-    Road rFD = new Road(gpF, gpD, generator.nextInt(20));
+    Road rDF = new Road(gpD, gpF, r.nextInt(20));
+    Road rFD = new Road(gpF, gpD, r.nextInt(20));
 
-    Road rDG = new Road(gpD, gpG, generator.nextInt(20));
-    Road rGD = new Road(gpG, gpD, generator.nextInt(20));
+    Road rDG = new Road(gpD, gpG, r.nextInt(20));
+    Road rGD = new Road(gpG, gpD, r.nextInt(20));
 
-    Road rEG = new Road(gpE, gpG, generator.nextInt(20));
-    Road rGE = new Road(gpG, gpE, generator.nextInt(20));
+    Road rEG = new Road(gpE, gpG, r.nextInt(20));
+    Road rGE = new Road(gpG, gpE, r.nextInt(20));
 
-    Road rGF = new Road(gpG, gpF, generator.nextInt(20));
-    Road rFG = new Road(gpF, gpG, generator.nextInt(20));
+    Road rGF = new Road(gpG, gpF, r.nextInt(20));
+    Road rFG = new Road(gpF, gpG, r.nextInt(20));
 
     private List<GeoPoint> geopoints = new ArrayList<GeoPoint>() {{
 
@@ -148,6 +150,16 @@ public class GeoController {
 
     }
 
+    @GetMapping(path="highlightsbypoint/{lat}/{lon}/{distance}")
+    public List<GeoPoint> getHightlightsByPoint(@PathVariable Double lat,@PathVariable Double lon,@PathVariable int distance){
+        List<GeoPoint> pointsbycoord =new ArrayList<GeoPoint>();
+        for (GeoPoint gp : geopoints){
+            if (gp.getLat()<=lat+distance && gp.getLon()<=lon+distance && gp.isSight()){
+                pointsbycoord.add(gp);
+            }
+        }
+        return pointsbycoord;
+    }
 
     private GeoPoint getStart(String from){
         GeoPoint start=null;
@@ -177,19 +189,12 @@ public class GeoController {
 
 
     private void fillSights(int distance){
-        System.out.println("Filling sights");
        for (GeoPoint gp: geopoints){
            String hightlights="";
-
-           System.out.println("GP=="+gp);
-
            for (Road rd : roads){
-
                if (rd.getStart().equals(gp) && rd.getDistance()<=distance && rd.getEnd().isSight()){
-                   System.out.println("FIILLL");
                    hightlights=hightlights+rd.getEnd().getPointName()+";";
                }
-
            }
           gp.setHightlights(hightlights);
        }

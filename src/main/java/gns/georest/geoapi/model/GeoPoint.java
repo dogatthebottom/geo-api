@@ -5,15 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-* Class Handler for GeoPoints
-* */
+ * Class Handler for GeoPoints
+ * */
 public class GeoPoint {
 
     //fields
     private String pointName; //Name of geo point
     private String pointDesc; //Description of geo point
-    private Double coord;     //Coordinates of geo point (not lat long, just Double)
+    private Double lat;     //Latitude
+    private Double lon;     //Longitude
     private boolean sight;    // Flag for determening if is it interesting place or not
+    private String hightlights;
+
 
     public String getHightlights() {
         return hightlights;
@@ -23,28 +26,44 @@ public class GeoPoint {
         this.hightlights = hightlights;
     }
 
-    private String hightlights;
 
+    public Double getLat() {
+        return lat;
+    }
 
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
 
     @Override
     public String toString() {
         return "GeoPoint{" +
                 "pointName='" + pointName + '\'' +
                 ", pointDesc='" + pointDesc + '\'' +
-                ", coord=" + coord +
+                ", lat=" + lat +
+                ", lon=" + lon +
                 ", sight=" + sight +
                 ", hightlights='" + hightlights + '\'' +
                 '}';
     }
 
-    public GeoPoint(){
+    public GeoPoint() {
 
     }
-    public GeoPoint(String pointName, String pointDesc, Double coord, boolean sight) {
+
+    public GeoPoint(String pointName, String pointDesc, Double lat, Double lon, boolean sight) {
         this.pointName = pointName;
         this.pointDesc = pointDesc;
-        this.coord = coord;
+        this.lat = lat;
+        this.lon = lon;
         this.sight = sight;
     }
 
@@ -64,14 +83,6 @@ public class GeoPoint {
         this.pointDesc = pointDesc;
     }
 
-    public Double getCoord() {
-        return coord;
-    }
-
-    public void setCoord(Double coord) {
-        this.coord = coord;
-    }
-
     public boolean isSight() {
         return sight;
     }
@@ -79,9 +90,6 @@ public class GeoPoint {
     public void setSight(boolean sight) {
         this.sight = sight;
     }
-
-
-
 
 
 }
